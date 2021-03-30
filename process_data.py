@@ -85,3 +85,20 @@ def save_data(df):
     """
     engine = create_engine('sqlite:///DisasterMessages.db')
     df.to_sql('messages', engine, index=False)
+
+def main():
+    """
+    Main entry point to the application
+    """
+    
+    # load the data from the messages and categories csv files
+    df = load_data()
+
+    # clean the loaded data
+    df = clean_data(df)
+        
+    # save the data to the database for future processing
+    save_data(df)
+
+if __name__ == '__main__':
+    main()
