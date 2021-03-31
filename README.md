@@ -1,12 +1,12 @@
 # Disaster Response Project
 
 ## Installation
-The code contained in this repository was written in HTML and Python 3, and requires the following Python packages: json, plotly, pandas, nltk, flask, sklearn, sqlalchemy, sys, numpy, re, pickle, warnings.
+The following Python packages are required to successfully run this project: json, plotly, pandas, nltk, flask, sklearn, sqlalchemy, sys, numpy, re, pickle, warnings.
 
 ## Project Overview
-This repository contains code for a web app which an emergency worker could use during a disaster event (e.g. an earthquake or hurricane), to classify a disaster message into several categories, in order that the message can be directed to the appropriate aid agencies. 
+This repository contains a web app that can be used during a disaster to classify received messages into several categories, so that the message can be directed to the proper resources, or filtered as unimportant. 
 
-The app uses a ML model to categorize any new messages received, and the repository also contains the code used to train the model and to prepare any new datasets for model training purposes.
+The app uses a model to classify any new messages received though the web UI, and also contains the code used to prepare the data and train the model doing the classification.
 
 ## File Descriptions
 * **process_data.py**: takes csv files and created a sqlite db with the messages and category columns
