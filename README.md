@@ -14,7 +14,7 @@ The app uses a model to classify any new messages received though the web UI, an
 * **ETL Pipeline Preparation.ipynb**: The code and analysis contained in this Jupyter notebook was used in the development of process_data.py. process_data.py effectively automates this notebook.
 * **ML Pipeline Preparation.ipynb**: The code and analysis contained in this Jupyter notebook was used in the development of train_classifier.py. In particular, it contains the analysis used to tune the ML model and determine which algorithm to use. train_classifier.py effectively automates the model fitting process contained in this notebook.
 * **data**: contains source csv, output db
-* **data**: contains saved model files
+* **data**: contains saved model files, after running the train_classifier.py
 * **app**: contains files for the web app
 
 ## Running Instructions
