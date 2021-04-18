@@ -5,7 +5,7 @@ import numpy as np
 from sqlalchemy import create_engine
 
 
-def load_data():
+def load_data(messages_path, categories_path):
     """Load and merge messages and categories datasets
 
     Args:
@@ -16,10 +16,10 @@ def load_data():
     """
 
     # Load messages dataset
-    messages = pd.read_csv('data/messages.csv')
+    messages = pd.read_csv(messages_path)
 
     # Load categories dataset
-    categories = pd.read_csv('data/categories.csv')
+    categories = pd.read_csv(categories_path)
 
     # Merge datasets
     df = messages.merge(categories, how='left', on=['id'])
@@ -45,10 +45,10 @@ def clean_data(df):
 
     # use this row to extract a list of new column names for categories.
     # apply a lambda function to parse off the last 2 characters
-    category_colnames = row.transform(lambda x: x[:-2]).tolist()
+    category_columns = row.transform(lambda x: x[:-2]).tolist()
 
     # Rename the columns to the column names
-    categories.columns = category_colnames
+    categories.columns = category_columns
 
     # Convert  category values to numeric values
     for column in categories:
@@ -73,7 +73,7 @@ def clean_data(df):
     return df
 
 
-def save_data(df):
+def save_data(df, database_path):
     """Save cleaned data into an SQLite database.
 
     Args:
@@ -84,8 +84,8 @@ def save_data(df):
     Returns:
     None
     """
-    engine = create_engine('sqlite:///data/DisasterMessages.db')
-    df.to_sql('messages', engine, index=False)
+    engine = create_engine(f'sqlite:///' + database_path)
+    df.to_sql('messages', engine, index=False, if_exists='replace')
 
 
 def main():
@@ -93,14 +93,26 @@ def main():
     Main entry point to the application
     """
 
-    # load the data from the messages and categories csv files
-    df = load_data()
+    if len(sys.argv) == 4:
 
-    # clean the loaded data
-    df = clean_data(df)
+        messages_path, categories_path, database_path = sys.argv[1:]
 
-    # save the data to the database for future processing
-    save_data(df)
+        print('Merging messages/categories')
+        df = load_data(messages_path, categories_path)
+
+        print('Cleaning data')
+        df = clean_data(df)
+
+        print('Saving data')
+        save_data(df, database_path)
+
+    else:
+        print('Please provide the following arguments:\n\n'
+              '(1) filepath to the messages.csv\n'
+              '(2) filepath to the categories.csv\n'
+              '(3) filepath to the output database\n\n'
+              'Example: python process_data.py data/messages.csv data/categories.csv '
+              'data/DisasterResponse.db')
 
 
 if __name__ == '__main__':
