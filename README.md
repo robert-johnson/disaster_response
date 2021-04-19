@@ -13,9 +13,10 @@ The app uses a model to classify any new messages received though the web UI, an
 * **train_classifier.py**: takes the information from the db and performs the NLP processing, then uses the data to train the model
 * **ETL Pipeline Preparation.ipynb**: The code and analysis contained in this Jupyter notebook was used in the development of process_data.py. process_data.py effectively automates this notebook.
 * **ML Pipeline Preparation.ipynb**: The code and analysis contained in this Jupyter notebook was used in the development of train_classifier.py. In particular, it contains the analysis used to tune the ML model and determine which algorithm to use. train_classifier.py effectively automates the model fitting process contained in this notebook.
+* **run.py**: python file which starts the web application
 * **data**: contains source csv, output db
-* **data**: contains saved model files, after running the train_classifier.py
-* **app**: contains files for the web app
+* **models**: contains saved model files, after running the train_classifier.py
+* **templates**: contains the html templates used by the web application
 
 ## Running Instructions
 ### ***Run process_data.py***
@@ -29,7 +30,7 @@ The app uses a model to classify any new messages received though the web UI, an
 `python train_classifier.py data/disaster_messages.db models/message_classifier.pkl`
 
 ### ***Run the web app***
-1. Save the app folder in the current working directory.
-2. Run the following command in the app directory:
+1. Copy the templates folder to the working directory
+2. Run the following command in the root directory:
     `python run.py`
 3. Go to http://0.0.0.0:3001/
