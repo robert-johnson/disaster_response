@@ -64,8 +64,9 @@ def index():
             'data': [
                 Bar(
                     x=labels,
-                    y=[requests, offers],
-                    marker_color=['red', 'green']
+                    y=[requests, offers]
+                    # ,
+                    # marker_color=['red', 'green']
 
                 )
             ],
@@ -86,8 +87,9 @@ def index():
             'data': [
                 Bar(
                     x=offer_types_labels,
-                    y=offer_types,
-                    marker_color=['blue', 'red', 'green', 'orange', 'yellow']
+                    y=offer_types
+                    # ,
+                    # marker_color=['blue', 'red', 'green', 'orange', 'yellow']
                 )
             ],
 
