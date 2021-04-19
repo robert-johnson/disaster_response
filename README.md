@@ -30,7 +30,7 @@ The app uses a model to classify any new messages received though the web UI, an
 `python train_classifier.py data/disaster_messages.db models/message_classifier.pkl`
 
 ### ***Run the web app***
-1. Copy the templates folder to the working directory
+1. Save the templates folder to the working directory
 2. Run the following command in the root directory:
     `python run.py`
 3. Go to http://0.0.0.0:3001/
